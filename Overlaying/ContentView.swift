@@ -19,6 +19,7 @@ struct ContentView: View {
     var body: some View {
         Text("Hello World")
             .frame(width: 100, height: 100)
+            .cornerRadius(20)
             .background(curColor)
             .onTapGesture { self.showOverlay.toggle() }
             .overlay(
@@ -38,7 +39,7 @@ struct ContentView: View {
                         .onAppear { self.grow.toggle() }
                         .onDisappear { self.grow.toggle() }
                     } else {
-                        EmptyView()
+                        /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
                     }
                 }
         )
