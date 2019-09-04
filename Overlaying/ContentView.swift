@@ -12,7 +12,7 @@ struct ContentView: View {
 //    @State var showOverLay = false
     @State var grow = false
     @State var showOverlay = false
-    @State var curColor = Color.red
+    @State var curColor = Color.blue
     
     let colors = [Color.blue, Color.red, Color.green, Color.yellow]
     
@@ -39,7 +39,7 @@ struct ContentView: View {
                         .onAppear { self.grow.toggle() }
                         .onDisappear { self.grow.toggle() }
                     } else {
-                        /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+                        EmptyView()
                     }
                 }
         )
