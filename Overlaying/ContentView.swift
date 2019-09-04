@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var grow = false
     @State var showOverlay = false
     @State var curColor = Color.blue
     
@@ -18,15 +17,14 @@ struct ContentView: View {
     var body: some View {
         Text("Hello World")
             .frame(width: 100, height: 100)
-            .cornerRadius(20)
             .background(curColor)
+            .cornerRadius(20)
             .onTapGesture { self.showOverlay.toggle() }
             .overlay(
                 VStack {
-                    if self.showOverlay {
                         ZStack {
                             ForEach(0 ..< 4) { item in
-                                ArcSelectionView(isShowing: self.grow,
+                                ArcSelectionView(isShowing: self.showOverlay,
                                                  arcPosition: (0.25 * Double(item + 1)),
                                                  color: self.colors[item])
                                     .onTapGesture {
@@ -35,13 +33,9 @@ struct ContentView: View {
                                 }
                             }
                         }
-                        .rotationEffect(.degrees(self.grow ? 0 : 180))
+                        .rotationEffect(.degrees(self.showOverlay ? 0 : 180))
                         .animation(.linear(duration: 0.5))
-                        .onAppear { self.grow.toggle() }
-                        .onDisappear { self.grow.toggle() }
-                    } else {
-                        EmptyView()
-                    }
+                        .opacity(self.showOverlay ? 1 : 0)
                 }
         )
     }
