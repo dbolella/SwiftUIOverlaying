@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ContentView: View {
-//    @State var showOverLay = false
     @State var grow = false
     @State var showOverlay = false
     @State var curColor = Color.blue
@@ -27,7 +26,9 @@ struct ContentView: View {
                     if self.showOverlay {
                         ZStack {
                             ForEach(0 ..< 4) { item in
-                                ArcSelectionView(isShowing: self.grow, arcPosition: (0.25 * Double(item + 1)), color: self.colors[item])
+                                ArcSelectionView(isShowing: self.grow,
+                                                 arcPosition: (0.25 * Double(item + 1)),
+                                                 color: self.colors[item])
                                     .onTapGesture {
                                         self.curColor = self.colors[item]
                                         self.showOverlay.toggle()
@@ -53,7 +54,8 @@ struct ArcSelectionView: View {
     
     var body: some View {
         Circle()
-            .trim(from: isShowing ? CGFloat(arcPosition - 0.25) : CGFloat(arcPosition), to: CGFloat(arcPosition))
+            .trim(from: isShowing ? CGFloat(arcPosition - 0.25) : CGFloat(arcPosition),
+                  to: CGFloat(arcPosition))
             .stroke(color, lineWidth: 30)
             .frame(width: 300, height: 300)
             .animation(.linear(duration: 0.4))
